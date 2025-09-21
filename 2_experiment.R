@@ -47,10 +47,8 @@ for (size in sample_sizes) {
       TimeGuess = time_guess,
       GuessedCorrectly = ifelse(nrow(guessed) > 0, guessed$encoding[1] == encoding, FALSE),
       TimeRepair = time_repair,
-      RepairedCorrectly = (repaired_text == original_text)
+      RepairedCorrectly = (repaired_text == original_text) # Невосстанавливается текст, изучить
     ))
-    print(repaired_text)
-    print(original_text)
   }
 }
 
