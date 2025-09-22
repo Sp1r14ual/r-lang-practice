@@ -8,9 +8,15 @@ generate_russian_text <- function(num_chars) {
   paste(sample(russian_alphabet, num_chars, replace = TRUE), collapse = "")
 }
 
+generate_english_text <- function(num_chars) {
+  # russian_alphabet <- c("а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я", " ")
+  english_alphabet <- c(letters, " ")
+  paste(sample(english_alphabet, num_chars, replace = TRUE), collapse = "")
+}
+
 # Experimental parameters
 sample_sizes <- c(50, 100, 500, 1000)
-true_encodings <- c("UTF-8", "windows-1251", "KOI8-R")
+true_encodings <- c("UTF-8", "windows-1251", "KOI8-R", "KOI-8U", "CP-866", "ISO-8859-5")
 
 # Data frame to store results
 results <- data.frame()
@@ -32,11 +38,12 @@ for (size in sample_sizes) {
 
     # --- Test repair_encoding ---
     # Simulate reading the file with the wrong encoding (a common source of errors)
-    garbled_text <- stri_conv(text_raw, from = encoding, to = "ISO-8859-7")
+    garble_encoding <- "ISO-8859-5"
+    garbled_text <- stri_conv(text_raw, from = encoding, to = garble_encoding)
 
     start_time_repair <- Sys.time()
     # repaired_text <- repair_encoding(garbled_text, from = encoding)
-    repaired_text <- repair_encoding(garbled_text, from = encoding)
+    repaired_text <- repair_encoding(garbled_text, from = garble_encoding)
     end_time_repair <- Sys.time()
     time_repair <- as.numeric(end_time_repair - start_time_repair)
 

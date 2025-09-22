@@ -6,7 +6,8 @@ library(stringi)
 # URL of a page (hypothetically in windows-1251)
 # Note: Finding such a page might require some searching.
 # For this example, let's use a known site that often has mixed encodings.
-url <- "http://lib.ru/" # A large Russian online library, good candidate
+# url <- "http://lib.ru/" # A large Russian online library, good candidate
+url <- "https://info.cern.ch/"
 
 # --- Web Scraping and Analysis ---
 start_time_download <- Sys.time()

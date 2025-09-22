@@ -1,4 +1,4 @@
-# install.packages(c("rvest", "stringi", "ggplot2"), repos = "http://cran.us.r-project.org")
+install.packages(c("rvest", "stringi", "ggplot2", "tidyr"), repos = "http://cran.us.r-project.org")
 
 # Load necessary libraries
 library(rvest)
